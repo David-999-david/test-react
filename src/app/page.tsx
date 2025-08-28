@@ -1,103 +1,169 @@
-import Image from "next/image";
+// "use client";
 
-export default function Home() {
+// import { useState } from "react";
+
+// export default function MyApp(){
+//   const [count, setcount] = useState(0);
+//   function HandleClick(){
+//     setcount(count + 1);
+//   }
+//   return (
+//     <div>
+//       <h1>For the first test for react!</h1>
+//       <ClickButton count={count} onClick={HandleClick} t="Button 1" />
+//       <ClickButton count={count} onClick={HandleClick} t="Button 2  " />
+//     </div>
+//   )
+// }
+
+// function ClickButton({count, onClick, t} : {count: number, onClick: ()=> void, t: string}){
+//   return (
+//     <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" onClick={onClick}>{t} {count}</button>
+//   )
+// }
+
+// "use client";
+
+export default function MyApp(){
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      <InlineGrid />
+      <InlineGrid />
     </div>
-  );
+  )
 }
+
+function InlineGrid(){
+  return (
+    <span className="inline-grid grid-cols-3 grid-rows-3 gap-x-20 gap-y-40 pr-40">
+      <span>01</span>
+      <span>02</span>
+      <span>03</span>
+      <span>04</span>
+      <span>05</span>
+      <span>06</span>
+      <span>04</span>
+      <span>05</span>
+      <span>06</span>
+      <span>04</span>
+      <span>05</span>
+      <span>06</span>
+    </span>
+  )
+}
+
+// export default function MyApp() {
+
+//   return (
+//     <Table />
+//   )
+// }
+
+// function Table() {
+//   return (
+//     <div>
+//       <table className="w-full">
+//         <thead>
+//           <tr>
+//             <th className=" text-left">Id</th>
+//             <th className=" text-left">Name</th>
+//             <th className=" text-left">Email</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td className="text-left">1</td>
+//             <td className="text-left">David</td>
+//             <td className="text-left">david@gmail.com</td>
+//           </tr>
+//           <tr className="table-row">
+//             <td className="text-left">2</td>
+//             <td className="text-left">OKEI</td>
+//             <td className="text-left">okei@gmail.com</td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </div>
+//   )
+// }
+
+
+// export default function MyApp() {
+
+//   return (
+//     <Table />
+//   )
+// }
+
+// function Table() {
+//   return (
+//     <div className="pl-10 pr-10">
+//       <div className="container bg-blue-500  py-20">
+//         <p className="text-center max-w-1/2">
+//           Here’s a single, extra-long paragraph you can
+//           use for testing: As the morning light filtered through
+//           the blinds and painted thin silver bars across the desk,
+//           the developer exhaled, cracked their knuckles, and opened
+//           the project that had somehow become both a playground
+//           and a proving ground; in this repository lived a Next.js
+//           app that hummed along on npm run dev, a Tailwind v3 setup
+//           that had finally stopped throwing mysterious errors after
+//           a night of pruning configs, and a checklist named “real flow”
+//           that grew longer every time a task was crossed out, because
+//           that’s how real projects behave—requirements expand, edge
+//           cases multiply, and the simplest “Hello World” grows tendrils:
+//           authentication, pagination, accessibility, error boundaries,
+//           loading states, skeleton UIs, cache revalidation, environment
+//           variables, and the subtle choreography of server and client
+//           components under the App Router; by noon the commit history
+//           looked like a heartbeat monitor—small spikes for refactors,
+//           big jolts for feature merges—while the terminal spat
+//           out friendly green checkmarks and the occasional red
+//           stack trace that forced a deep breath and a trip to the docs;
+//         </p>
+//       </div>
+//       <div className="container pt-30">
+//         <p className="text-center max-w-1/2">
+//           Here’s a single, extra-long paragraph you can
+//           use for testing: As the morning light filtered through
+//           the blinds and painted thin silver bars across the desk,
+//           the developer exhaled, cracked their knuckles, and opened
+//           the project that had somehow become both a playground
+//         </p>
+//       </div>
+//       <div className="container pt-20">
+//         <p className="text-center max-w-1/2">
+//           Here’s a single, extra-long paragraph you can
+//           use for testing: As the morning light filtered through
+//           the blinds and painted thin silver bars across the desk,
+//           the developer exhaled, cracked their knuckles, and opened
+//           the project that had somehow become both a playground
+//         </p>
+//       </div>
+//     </div>
+//   )
+// }
+
+
+// export default function MyApp() {
+
+//   return (
+//     <FlexWidth />
+//   )
+// }
+
+// function FlexWidth() {
+//   return (
+//     <div className="flex">
+//       <div className="container w-1/2 rounded-full">
+//         <h1 className="bg-yellow-200">Yellow</h1>
+//         <p className="bg-orange-300">Orange</p>
+//       </div>
+//       <div className="container w-1/2 rounded-full">
+//         <h2 className="bg-teal-100 text-red">Red</h2>
+//         <p className="bg-black text-orange-100">Orange</p>
+//       </div>
+//     </div>
+//   )
+// }
