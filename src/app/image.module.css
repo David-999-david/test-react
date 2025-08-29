@@ -1,0 +1,66 @@
+.image {
+    display: inline-block;
+    border-radius: 9999px;
+    border: 2px solid pink;
+    box-sizing: border-box;
+}
+
+/* .btn {
+    background-color: rgb(216, 216, 140);
+    border-radius: 9999px;
+}
+
+.btn:hover {
+    background-color: rgb(209, 209, 30);
+}
+
+.btn:focus {
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: violet;
+    outline-style: solid;
+}
+
+.btn:active {
+    background-color: blue;
+} */
+
+.field {
+    border-radius: 10;
+    border: 1px solid black;
+    font-size: 15;
+}
+
+.field[aria-invalid='true'] {
+    border-color: red;
+    border: 1px solid red !important;
+}
+
+.form {
+    display: inline-flex;
+    width: 260 ;
+    background-color: rgb(195, 190, 190);
+    border-radius: 10;
+    border: 1px solid black;
+}
+
+.btn {
+    background-color: white;
+    border-radius: 6;
+    border: 1px solid ;
+}
+
+.btn:hover {
+    background-color: rgb(204, 204, 219);
+}
+
+.btn:active {
+    background-color: rgb(80, 80, 215);
+}
+
+.btn:focus {
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: palegoldenrod;
+    outline-style: solid;
+}
