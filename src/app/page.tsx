@@ -434,9 +434,41 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormRegister, FieldErrors, Path } from 'react-hook-form';
 
+const genders = [
+  "Male",
+  "Female",
+  "Others"
+]
+
+const age = [
+  { "id": 1, "age": -18 },
+  { "id": 2, "age": 18 },
+  { "id": 3, "age": 26 }
+]
+
+type Age = {
+  id: number;
+  age: number
+}
+
+const foods = [
+  { "id": 1, "name": "Banana" },
+  { "id": 2, "name": "Apple" },
+  { "id": 3, "name": "Orange" },
+  { "id": 4, "name": "Fish" }
+]
+
+type Food = {
+  id: number;
+  name: string
+}
+
 export default function MyApp() {
   return (
-    <Form />
+    <div className="flex flex-row min-h-screen justify-center items-start pt-40">
+      <Form />
+      <DropDown genders={genders} />
+    </div>
   )
 }
 
@@ -465,7 +497,7 @@ function Form() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center">
+    <div>
       <form
         noValidate
         onSubmit={handleSubmit(onSubmit)}
@@ -512,7 +544,8 @@ function TextField({ t, n, id, label, p, register, errors }:
   return (
     <div className="flex flex-col my-1">
       <label htmlFor={id} className="text-[14px] pl-1">{label}</label>
-      <input className={`${styles.field} px-2 py-1
+      <input className={`${styles.field} 
+      px-2 py-1
       `}
         type={t}
         id={id}
@@ -534,5 +567,102 @@ function Btn(
     <button className={`${styles.btn} px-1 mt-5`}>
       {isSubmitting ? 'Submitting' : 'Login'}
     </button>
+  )
+}
+
+function DropDown(
+  { genders }:
+    { genders: string[] }
+) {
+
+  return (
+    <div className="flex flex-col items-start ml-10">
+      <label htmlFor="gneders" className="pb-1">Gender</label>
+      <select id="genders" name="genders"
+        defaultValue="Female"
+        className={`${styles.drop} text-black px-2 py-1`}
+      >
+        {
+          genders.map((g, i) => (
+            <option key={i} value={g}>{g}</option>
+          ))
+        }
+      </select>
+      <Radio age={age} />
+      <CheckBox foods={foods} />
+    </div>
+  )
+}
+
+function Radio(
+  { age }:
+    { age: Age[] }
+) {
+  return (
+    <fieldset className="flex gap-8">
+      <legend className="ml-3 py-1">Age</legend>
+      {
+        age.map(a => {
+          const inputId = `age-${a.id}`
+          return (
+            <label key={a.id}
+              htmlFor={inputId}
+              className="inline-flex flex-col px-2"
+            >
+              <input
+                id={inputId}
+                type="radio"
+                name="age"
+                value={a.age}
+                className="
+                h-4 w-4
+                accent-indigo-600
+                "
+              ></input>
+              {a.age}
+            </label>
+          )
+        })
+      }
+    </fieldset>
+  )
+}
+
+function CheckBox(
+  { foods }:
+    { foods: Food[] }
+) {
+  return (
+    <fieldset className="grid grid-cols-2 ml-2 mt-2 gap-4">
+      <legend className="mb-1">Food</legend>
+      {
+        foods.map(f => {
+          const inputId = `food-${f.id}`
+          return (
+            <label
+              key={f.id}
+              htmlFor={inputId}
+            >
+              <input
+                type="checkbox"
+                id={inputId}
+                name="foods"
+                value={f.name}
+                className="h-4 w-4
+                accent-indigo-600
+                mr-1"
+              />
+              <div
+              className="
+              rounded-xl border p-1 text-sm
+              "
+              >
+                {f.name}
+              </div>
+            </label>
+          )
+        })
+      }
+    </fieldset>
   )
 }

@@ -64,3 +64,13 @@
     outline-color: palegoldenrod;
     outline-style: solid;
 }
+
+.drop {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: rgb(154, 154, 194) ;
+}
+
+.drop:hover {
+    background-color: rgb(99, 99, 218);
+}
