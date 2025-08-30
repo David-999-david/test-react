@@ -433,6 +433,9 @@ import styles from './image.module.css';
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormRegister, FieldErrors, Path } from 'react-hook-form';
+import { FaFolder } from "react-icons/fa";
+import Image from "next/image";
+import { Order } from "./ui/need";
 
 const genders = [
   "Male",
@@ -463,11 +466,38 @@ type Food = {
   name: string
 }
 
+const users = [
+  { "id": 1, "name": "David", "image": "/images/ct.png", "role": "Manager" },
+  { "id": 2, "name": "Fouring", "image": "/images/ct.png", "role": "Staff" },
+  { "id": 3, "name": "Vouted", "image": "/images/ct.png", "role": "Supervior" },
+  { "id": 4, "name": "Widllinang", "image": "/images/ct.png", "role": "Network enginer" },
+  { "id": 5, "name": "Roudi DDE", "image": "/images/ct.png", "role": "Casher" }
+]
+
+type User = {
+  id: number;
+  name: string;
+  image: string;
+  role: string;
+}
+
 export default function MyApp() {
   return (
-    <div className="flex flex-row min-h-screen justify-center items-start pt-40">
-      <Form />
-      <DropDown genders={genders} />
+    <div className="flex flex-col justify-center items-start px-10">
+      <div className="flex flex-col items-center">
+        <TextCard />
+        <div className="flex flex-col sm:flex-row">
+          <Form />
+          <DropDown genders={genders} />
+        </div>
+      </div>
+      <div className="flex flex-col  sm:flex-row sm:w-auto gap-x-10">
+        <UserProfile users={users} />
+        <div>
+          {/* <Published />  */}
+          <Order />
+        </div>
+      </div>
     </div>
   )
 }
@@ -607,7 +637,11 @@ function Radio(
           return (
             <label key={a.id}
               htmlFor={inputId}
-              className="inline-flex flex-col px-2"
+              className="inline-flex flex-col px-2
+              has-checked:bg-indigo-50
+              has-checked:text-indigo-900
+              has-checked:ring-indigo-200
+              "
             >
               <input
                 id={inputId}
@@ -617,6 +651,7 @@ function Radio(
                 className="
                 h-4 w-4
                 accent-indigo-600
+                checked:border-indigo-500
                 "
               ></input>
               {a.age}
@@ -633,7 +668,7 @@ function CheckBox(
     { foods: Food[] }
 ) {
   return (
-    <fieldset className="grid grid-cols-2 ml-2 mt-2 gap-4">
+    <fieldset className="grid grid-cols-2 ml-2 mt-2 gap-5">
       <legend className="mb-1">Food</legend>
       {
         foods.map(f => {
@@ -642,23 +677,31 @@ function CheckBox(
             <label
               key={f.id}
               htmlFor={inputId}
+              className="flex justify-center items-center gap-2"
             >
               <input
                 type="checkbox"
                 id={inputId}
                 name="foods"
                 value={f.name}
-                className="h-4 w-4
+                className="
+                peer
+                cursor-pointer
+                h-4 w-4
                 accent-indigo-600
-                mr-1"
+                "
               />
-              <div
-              className="
+              <span
+                className="
+              peer-checked:line-through
+              peer-checked:border-pink-400
+              peer-checked:bg-indigo-200
+              peer-checked:text-red-400
               rounded-xl border p-1 text-sm
               "
               >
                 {f.name}
-              </div>
+              </span>
             </label>
           )
         })
@@ -666,3 +709,69 @@ function CheckBox(
     </fieldset>
   )
 }
+
+function TextCard() {
+  return (
+    <div className={`group ${styles.card} px-6 py-3 mb-8`}>
+      <div className={`
+      flex justify-start items-center mb-1`}>
+        <FaFolder className="text-blue-300 group-hover:text-white mr-2" />
+        <h1 className="font-semibold">Choice your Project</h1>
+      </div>
+      <p className="text-sm">
+        On one corner of my dresser sits a smiling toy clown on a tiny unicycle―a gift
+        I received last Christmas from a close friend. The short yellow hair, made of
+        yarn, covers its ears but is parted above the eyes. The blue eyes are outlined
+        in black with thin, dark lashes flowing from the brows. It has cherry-red cheeks,
+        nose, and lips, and its broad grin disappears into the wide, white ruffle around
+        its neck. The clown wears a fluffy, two-tone nylon costume. The left side of the
+        outfit is light blue, and the right side is red. The two colors merge in a dark
+        line that runs down the center of the small outfit. Surrounding its ankles and
+        disguising its long black shoes are big pink bows. The white spokes on the wheels
+        of the unicycle gather in the center and expand to the black tire so that the wheel
+        somewhat resembles the inner half of a grapefruit. The clown and unicycle together
+        stand about a foot high. As a cherished gift from my good friend Tran, this colorful
+        figure greets me with a smile every time I enter my room.
+      </p>
+    </div>
+  )
+}
+
+function UserProfile(
+  { users }:
+    { users: User[] }
+) {
+  return (
+    <ul className="w-full flex flex-col justify-start mt-4">
+      {
+        users.map(u => {
+          const userKey = `user-${u.id}`
+          return (
+            <li key={userKey} className={`${styles.user} group/item w-full sm:w-96 md:w-80 px-5 py-3 mb-3`}>
+              <div className="flex justify-start">
+                <Image
+                  src={u.image}
+                  alt=""
+                  width={60}
+                  height={60}
+                  className="rounded-full"
+                />
+                <div className="w-full flex flex-row justify-between items-center">
+                  <div className="flex flex-col justify-center ml-5">
+                    <p className="text-base">{u.name}</p>
+                    <p className="text-[11px]">{u.role}</p>
+                  </div>
+                  <a className="flex group/edit rounded-[8px] bg-blue-200 invisible group-hover/item:visible justify-end cursor-pointer">
+                    <span className="group-hover/edit:text-gray-400 rounded-[8px] group-hover/edit:bg-red-100 px-1 py-1">
+                      Call<span className="inline">{`>`}</span></span>
+                  </a>
+                </div>
+              </div>
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
+}
+
