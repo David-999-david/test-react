@@ -435,7 +435,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormRegister, FieldErrors, Path } from 'react-hook-form';
 import { FaFolder } from "react-icons/fa";
 import Image from "next/image";
-import { Order } from "./ui/need";
+import { Check, IdTable, LR, Open, Order, Select, Video } from "./ui/need";
 
 const genders = [
   "Male",
@@ -483,7 +483,7 @@ type User = {
 
 export default function MyApp() {
   return (
-    <div className="flex flex-col justify-center items-start px-10">
+    <div className="flex flex-col justify-center items-start px-10 py-10">
       <div className="flex flex-col items-center">
         <TextCard />
         <div className="flex flex-col sm:flex-row">
@@ -494,9 +494,16 @@ export default function MyApp() {
       <div className="flex flex-col  sm:flex-row sm:w-auto gap-x-10">
         <UserProfile users={users} />
         <div>
-          {/* <Published />  */}
           <Order />
         </div>
+      </div>
+      <div className="flex-col  w-full items-center justify-center">
+        <Select />
+        <Check />
+        <IdTable />
+        <LR />
+        <Open />
+        <Video />
       </div>
     </div>
   )
@@ -718,7 +725,7 @@ function TextCard() {
         <FaFolder className="text-blue-300 group-hover:text-white mr-2" />
         <h1 className="font-semibold">Choice your Project</h1>
       </div>
-      <p className="text-sm">
+      <p className="first-letter:float-left first-letter:text-[60px] first-letter:mr-3 first-line:tracking-widest first-line:uppercase first-line:font-semibold">
         On one corner of my dresser sits a smiling toy clown on a tiny unicycle―a gift
         I received last Christmas from a close friend. The short yellow hair, made of
         yarn, covers its ears but is parted above the eyes. The blue eyes are outlined
