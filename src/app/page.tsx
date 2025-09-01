@@ -435,7 +435,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormRegister, FieldErrors, Path } from 'react-hook-form';
 import { FaFolder } from "react-icons/fa";
 import Image from "next/image";
-import { Check, IdTable, LR, Open, Order, Select, Video } from "./ui/need";
+import { Box, Box1, Box2, BoxDecoration, Check, GalleryShow, I, IdTable, LR, Open, Order, P, Select, Video } from "./ui/need";
 
 const genders = [
   "Male",
@@ -504,6 +504,15 @@ export default function MyApp() {
         <LR />
         <Open />
         <Video />
+        <BoxDecoration />
+        <Box />
+        <Box1 />
+        <P />
+        <I />
+        <U1 users={users} />
+        <U2 users={users} />
+        <Box2 />
+        <GalleryShow />
       </div>
     </div>
   )
@@ -749,19 +758,19 @@ function UserProfile(
     { users: User[] }
 ) {
   return (
-    <ul className="w-full flex flex-col justify-start mt-4">
+    <ul className="w-full flex flex-col justify-start relative mt-4">
       {
         users.map(u => {
           const userKey = `user-${u.id}`
           return (
-            <li key={userKey} className={`${styles.user} group/item w-full sm:w-96 md:w-80 px-5 py-3 mb-3`}>
+            <li key={userKey} className={`${styles.user} relative group/item w-full sm:w-96 md:w-80 hover:scale-105 px-5 py-3 mb-3`}>
               <div className="flex justify-start">
                 <Image
                   src={u.image}
                   alt=""
                   width={60}
                   height={60}
-                  className="rounded-full"
+                  className="rounded-full group-hover/item:scale-110"
                 />
                 <div className="w-full flex flex-row justify-between items-center">
                   <div className="flex flex-col justify-center ml-5">
@@ -769,7 +778,7 @@ function UserProfile(
                     <p className="text-[11px]">{u.role}</p>
                   </div>
                   <a className="flex group/edit rounded-[8px] bg-blue-200 invisible group-hover/item:visible justify-end cursor-pointer">
-                    <span className="group-hover/edit:text-gray-400 rounded-[8px] group-hover/edit:bg-red-100 px-1 py-1">
+                    <span className=" group-hover/edit:scale-110 group-hover/edit:text-gray-400 rounded-[8px] group-hover/edit:bg-red-100 px-1 py-1">
                       Call<span className="inline">{`>`}</span></span>
                   </a>
                 </div>
@@ -782,3 +791,76 @@ function UserProfile(
   )
 }
 
+function U1(
+  { users }:
+    { users: User[] }
+) {
+  return (
+    <ul className="w-full flex flex-col justify-start
+    h-40 overflow-y-auto
+    relative mt-10 items-center">
+      {
+        users.map(u => {
+          const userKey = `user-${u.id}`
+          return (
+            <li key={userKey} className={`border-l border-r border-b border-black relative group/item w-full sm:w-96 md:w-80 bg-gray-100 hover:bg-gray-300 5 px-5 py-3`}>
+              <div className="flex justify-start">
+                <Image
+                  src={u.image}
+                  alt=""
+                  width={60}
+                  height={60}
+                  className="rounded-full group-hover/item:scale-110"
+                />
+                <div className="w-full flex flex-row justify-between items-center">
+                  <div className="flex flex-col justify-center ml-5">
+                    <p className="text-base">{u.name}</p>
+                    <p className="text-[11px]">{u.role}</p>
+                  </div>
+                  <a className="flex group/edit rounded-[8px] bg-blue-200 invisible group-hover/item:visible justify-end cursor-pointer">
+                    <span className=" group-hover/edit:scale-110 group-hover/edit:text-gray-400 rounded-[8px] group-hover/edit:bg-red-100 px-1 py-1">
+                      Call<span className="inline">{`>`}</span></span>
+                  </a>
+                </div>
+              </div>
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
+}
+
+function U2(
+  { users }:
+    { users: User[] }
+) {
+  return (
+    <ul className="w-full flex justify-start
+    w-80
+    overflow-x-auto
+    relative mt-10 items-center">
+      {
+        users.map(u => {
+          const userKey = `user-${u.id}`
+          return (
+            <li key={userKey} className={`w-full border-l border-r border-b border-black relative group/item w-full sm:w-96 md:w-80 bg-gray-100 hover:bg-gray-300 5 px-5 py-3`}>
+              <div className="flex flex-col justify-start items-center">
+                <Image
+                  src={u.image}
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="rounded-full group-hover/item:scale-110"
+                />
+                <div className="flex flex-col justify-start">
+                  <p className="text-base overflow-hidden">{u.name}</p>
+                </div>
+              </div>
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
+}

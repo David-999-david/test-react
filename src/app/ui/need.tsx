@@ -383,9 +383,9 @@ function U(
 export function Open() {
     return (
         <div>
-            <details 
-            open={false}
-            className="flex flex-col border
+            <details
+                open={false}
+                className="flex flex-col border
             w-1/2
             open:border-pink-600
             open:bg-blue-500
@@ -405,14 +405,304 @@ export function Open() {
     )
 }
 
-export function Video(){
+export function Video() {
     return (
         <div>
             <iframe
-            src="https://www.youtube.com/embed/ZK9VKgHtIkI?start=0&autoplay=0"
-            className="aspect-video my-5 w-3/4">
+                src="https://www.youtube.com/embed/ZK9VKgHtIkI?start=0&autoplay=0"
+                className="aspect-video my-5 w-3/4">
                 <span className="inline-block">Video</span>
             </iframe>
+        </div>
+    )
+}
+
+export function BoxDecoration() {
+    return (
+        <div className="flex flex-col space-y-4 pr-1">
+            <span
+                className="
+            w-fit
+            text-yellow-600
+            box-decoration-clone
+            bg-gradient-to-b
+            from-blue-200
+            to-pink-300
+            "
+            >
+                This is a very long text <br />that will wrap to the next line
+            </span>
+            <span
+                className="
+            inline block w-fit
+            text-zinc-400
+            box-decoration-slice
+            bg-gradient-to-t
+            from-pink-300
+            to-yellow-400
+            "
+            >
+                This is a very long text <br /> that will wrap to the next line
+            </span>
+        </div>
+    )
+}
+
+export function Box() {
+    return (
+        <div className="flex flex-col sm:flex-row justify-center items-center mt-20 gap-20">
+            <div
+                className="
+            box-border
+            size-64
+            border-4
+            bg-red-300
+            "
+            ></div>
+            <div
+                className="
+            box-border
+            size-64
+            border-8
+            bg-blue-300
+            "
+            ></div>
+        </div>
+    )
+}
+
+export function Box1() {
+    return (
+        <div className="flex mt-20 gap-20">
+            <div
+                className="
+            box-content
+            size-64
+            border-4
+            bg-red-300
+            "
+            ></div>
+            <div
+                className="
+            box-border
+            size-64
+            border-8
+            bg-blue-300
+            "
+            ></div>
+        </div>
+    )
+}
+
+export function P() {
+    return (
+        <article dir="rtl" className="mt-5">
+            <Image
+                src='/images/ct.png'
+                alt=""
+                width={50}
+                height={50}
+                className=" float-start ml-2 rounded"
+            />
+            <p>
+                On a breezy evening the boardwalk hums with quiet conversations
+                and the soft crackle of food stalls warming up for the night.
+                <span className="inline bg-blue-400">
+                    Neon signs ripple across the puddles like paint, and gulls
+                    drift over the tide as if the wind were a gentle escalator.
+                </span>
+                You can smell salt, sugar, and something smoky, and for a moment
+                the whole scene feels rehearsed—familiar yet new, like the first
+                page of a well-loved book
+            </p>
+        </article>
+    )
+}
+
+export function I() {
+    return (
+        <div className="flex justify-center relative hover:scale-105 mt-10">
+            <Image
+                src='/images/ct.png'
+                alt=""
+                width={280}
+                height={100}
+                className="
+            object-cover
+            rounded
+            border
+            border-black
+            bg-pink-400
+            p-1
+            "
+            />
+            <span
+                className="
+            absolute
+            text-sm
+            bottom-2
+            text-white
+            "
+            >
+                Image
+            </span>
+        </div>
+    )
+}
+
+export function Box2() {
+    return (
+        <div
+            className="
+            relative
+            size-64
+            border-4
+            bg-red-300
+            "
+        >
+            <div
+                className="
+            absolute
+            size-1/2
+            top-1
+            hover:scale-105
+            bg-blue-300
+            "
+            ></div>
+            <div
+                className="
+            absolute
+            h-16
+            inset-x-0 top-5
+            bg-green-300
+            "
+            ></div>
+            <div
+                className="
+            absolute
+            w-16
+            inset-y-0 top-0 left-3
+            hover:scale-105
+            bg-orange-300
+            "
+            ></div>
+            <div
+                className="
+            absolute
+            w-16
+            inset-y-0
+            right-1
+            hover:scale-105
+            bg-zinc-300
+            "
+            ></div>
+            <div
+                className="
+            absolute
+            h-16
+            bottom-3
+            inset-x-0
+            hover:scale-105
+            bg-violet-200
+            "
+            ></div>
+        </div>
+
+    )
+}
+
+type Gallery = {
+    id: number;
+    title: string;
+    author: string;
+    path: string;
+    d: string;
+}
+
+const galleries: Gallery[] = [
+    { id: 1, title: "Realx on beach", author: "David", path: "/images/ggn.png", d: "HO HO" },
+    { id: 2, title: "Sea", author: "Alex", path: "/images/be.png", d: "HO HO" },
+    { id: 3, title: "Forest", author: "Moon", path: "/images/ct.png", d: "HO HO" },
+    { id: 4, title: "Wonderful", author: "Emily", path: "/images/sbb.png", d: "HO HO" },
+    { id: 5, title: "Sport", author: "Zinc", path: "/images/sport.png", d: "HO HO" },
+    { id: 6, title: "Modern", author: "Willian", path: "/images/modern.png", d: "HO HO" }
+]
+
+export function GalleryShow() {
+    return (
+        <div className="grid grid-cols-2 sm:grid-cols-3 mt-20 w-fit gap-x-4 gap-y-2 mx-auto 
+        border
+        border-black
+        rounded
+        p-1
+        ">
+            {
+                galleries.map(g => {
+                    return (
+                        <div
+                            key={g.id}
+                            className="
+                            group
+                            relative
+                            overflow-hidden
+                            "
+                        >
+                            <Image
+                                src={g.path}
+                                alt=""
+                                width={140}
+                                height={200}
+                                className="
+                                h-[210]
+                                w-[180px]
+                                sm:h-[250px]
+                                sm:w-[200px]
+                                object-cover
+                                rounded
+                                group-hover:scale-110
+                                "
+                            />
+                            <div
+                                className="
+                                absolute
+                                inset-0
+                                bg-gradient-to-t
+                                from-black/60
+                                to-transparent
+                                opacity-0
+                                transition-opacity duration-300
+                                group-hover:opacity-100
+                                "
+                            ></div>
+                            <div
+                                className="
+                            absolute
+                            bottom-0
+                            p-2
+                            translate-y-full
+                            group-hover:translate-y-0
+                            duration-300
+                            "
+                            >
+                                <p
+                                    className="
+                                text-sm
+                                text-white
+                                "
+                                >{g.author}</p>
+                                <p
+                                className="
+                                text-sm
+                                text-white
+                                "
+                                >
+                                    {g.d}
+                                </p>
+                            </div>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }
